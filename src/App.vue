@@ -1,12 +1,21 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <routerLink to="/">Home</routerLink> |
+      <UserName></UserName>
     </div>
-    <router-view/>
+    <routerView></routerView>
   </div>
 </template>
+
+<script>
+import UserName from "@/components/userName.vue";
+export default {
+  components: {
+    UserName,
+  }
+}
+</script>
 
 <style lang="less">
 #app {
