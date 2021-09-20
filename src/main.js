@@ -5,6 +5,8 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+store.dispatch('User/whoAmi');
+
 new Vue({
   router,
   store,

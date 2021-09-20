@@ -1,37 +1,50 @@
+import { userApi } from "@/api/index.js";
+
 export default {
     namespaced: true,
     state: {
         loading: false,
         data: null,
     },
+    getters: {
+        status(state) {
+            if (state.loading) {
+                return 'loading';
+            } else if (state.data) {
+                return 'login';
+            } else {
+                return 'unlogin';
+            }
+        }
+    },
     mutations: {
-        setLoading(state,payload) {
+        setLoading(state, payload) {
             state.loading = payload;
         },
-        setData(state,payload) {
+        setData(state, payload) {
             state.data = payload;
         }
     },
     actions: {
-        async Login(ctx,payload) {
+        async Login(ctx, payload) {
+            ctx.commit('setLoading', true);
+            const resp = await userApi.login(payload.loginId,payload.loginPwd);
+            ctx.commit('setData', resp);
             ctx.commit('setLoading',false);
-            const resp = await userApi.login(payload.userid,payload.userpwd);
-            ctx.commit('setData',resp);
-            ctx.commit('setLoading',true);
             return resp;
         },
         async whoAmi(ctx) {
-            ctx.commit('setLoading',false);
+            ctx.commit('setLoading', true);
             const resp = await userApi.whoAmi();
-            ctx.commit('setData',resp);
-            ctx.commit('setLoading',true);
+            ctx.commit('setData', resp);
+            ctx.commit('setLoading', false);
             return resp;
         },
         async loginOut(ctx) {
-            ctx.commit('setLoading',false);
+            ctx.commit('setLoading', true);
             await userApi.loginOut();
-            ctx.commit('setData',null);
-            ctx.commit('setLoading',true);
+            ctx.commit('setData', null);
+            ctx.commit('setLoading', false);
         }
-    }, 
+    },
 }

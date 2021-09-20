@@ -2,6 +2,7 @@
   <div id="app">
     <div id="nav">
       <routerLink to="/">Home</routerLink> |
+      <routerLink :to="{ name: 'News' }">News</routerLink> |
       <UserName></UserName>
     </div>
     <routerView></routerView>
@@ -13,8 +14,8 @@ import UserName from "@/components/userName.vue";
 export default {
   components: {
     UserName,
-  }
-}
+  },
+};
 </script>
 
 <style lang="less">

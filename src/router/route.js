@@ -4,7 +4,10 @@ export default [
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
+      meta: {
+        auth: false,
+      }
     },
     {
       path: '/login',
@@ -12,7 +15,32 @@ export default [
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue')
+      component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue'),
+      meta: {
+        auth: false,
+      }
+    },
+    {
+      path: '/loading',
+      name: 'Loading',
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import(/* webpackChunkName: "Login" */ '../views/Loading.vue'),
+      meta: {
+        auth: false,
+      }
+    },
+    {
+      path: '/news',
+      name: 'News',
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import(/* webpackChunkName: "Login" */ '../views/News.vue'),
+      meta: {
+        auth: true,
+      }
     },
     {
         path: '/user',
@@ -20,7 +48,10 @@ export default [
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "Login" */ '../views/User.vue')
+        component: () => import(/* webpackChunkName: "Login" */ '../views/User.vue'),
+        meta: {
+          auth: true,
+        }
       }
   ]
   
